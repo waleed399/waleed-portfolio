@@ -543,7 +543,7 @@ export default function Home() {
               >
                 <div className="relative h-48 w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
                   <Image
-                    src="/volunteering/IMG_20210924_160955_535.webp"
+                    src="/volunteering/IMG_20210921_223733_772.jpeg"
                     alt="Matapalo, Costa Rica"
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"

@@ -84,13 +84,13 @@ const allMedia: MediaItem[] = [
   // Images - September 2021
   { type: "image" as const, src: "/volunteering/IMG_20210921_223733_772.jpeg", date: "September 21, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210924_160935_493.webp", date: "September 24, 2021" },
-  { type: "image" as const, src: "/volunteering/IMG_20210924_160955_535.webp", date: "September 24, 2021" },
+  { type: "image" as const, src: "/volunteering/IMG_20210924_160955_535 2.webp", date: "September 24, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210924_172402_499.jpg", date: "September 24, 2021" },
-  { type: "image" as const, src: "/volunteering/IMG_20210924_172405_788.jpg", date: "September 24, 2021" },
-  { type: "image" as const, src: "/volunteering/IMG_20210924_172502_756.jpg", date: "September 24, 2021" },
+  { type: "image" as const, src: "/volunteering/IMG_20210924_172405_788 2.jpg", date: "September 24, 2021" },
+  { type: "image" as const, src: "/volunteering/IMG_20210924_172502_756 2.jpg", date: "September 24, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210924_173825_592.webp", date: "September 24, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210925_092118_322.webp", date: "September 25, 2021" },
-  { type: "image" as const, src: "/volunteering/IMG_20210926_171203.jpg", date: "September 26, 2021" },
+  { type: "image" as const, src: "/volunteering/IMG_20210926_171203 2.jpg", date: "September 26, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210926_171734_268.jpg", date: "September 26, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210926_191946_302.webp", date: "September 26, 2021" },
   { type: "image" as const, src: "/volunteering/IMG_20210927_163042_095.webp", date: "September 27, 2021" },
@@ -116,7 +116,7 @@ const collections: Collection[] = [
     year: "2021",
     description: "Volunteering experience in the beautiful coastal town of Matapalo, Costa Rica. Contributing to local community projects and environmental conservation efforts, particularly focused on sea turtle conservation and protection.",
     media: allMedia.filter(item => extractYear(item) === "2021"),
-    thumbnail: allMedia.find(item => extractYear(item) === "2021" && item.type === "image")?.src || allMedia[0].src,
+    thumbnail: "/volunteering/IMG_20210921_223733_772.jpeg", // First image from 2021 that exists
     icon: "",
   },
   {
@@ -127,7 +127,7 @@ const collections: Collection[] = [
     year: "2023",
     description: "Community service and volunteer work in Puerto Escondido, Mexico. Serving as a receptionist and promoter at a local hostel, supporting tourism and hospitality initiatives while making a positive impact in the community.",
     media: allMedia.filter(item => extractYear(item) === "2023"),
-    thumbnail: allMedia.find(item => extractYear(item) === "2023" && item.type === "image")?.src || allMedia[0].src,
+    thumbnail: "/volunteering/IMG_20230206_182335_665.webp", // First image from 2023 that exists
     // Receptionist/Hospitality icon SVG path
     icon: "",
   },
