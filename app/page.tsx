@@ -126,6 +126,12 @@ export default function Home() {
               >
                 Volunteering
               </Link>
+              <Link
+                href="/certifications"
+                className="text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
+              >
+                Certifications
+              </Link>
               <a
                 href="/Waleed_Ali_CV.pdf"
                 target="_blank"
