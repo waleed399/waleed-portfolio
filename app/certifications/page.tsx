@@ -37,6 +37,7 @@ const certifications: Certification[] = [
 
 export default function CertificationsPage() {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [fullSizeImage, setFullSizeImage] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-50 via-white to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900">
@@ -270,7 +271,10 @@ export default function CertificationsPage() {
             {/* Modal Content */}
             <div className="p-6">
               {/* Certification Image */}
-              <div className="relative mb-6 aspect-video w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-800">
+              <div 
+                className="relative mb-6 h-[500px] w-full cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 transition-all hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-800 dark:hover:border-zinc-700"
+                onClick={() => setFullSizeImage(selectedCert.image)}
+              >
                 <Image
                   src={selectedCert.image}
                   alt={selectedCert.title}
@@ -325,6 +329,49 @@ export default function CertificationsPage() {
                   </div>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full Size Image Modal */}
+      {fullSizeImage && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setFullSizeImage(null)}
+        >
+          <div
+            className="relative max-h-[95vh] max-w-[95vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setFullSizeImage(null)}
+              className="absolute -right-12 top-0 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+              aria-label="Close"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="relative h-full w-full">
+              <Image
+                src={fullSizeImage}
+                alt="Full size certification"
+                width={1920}
+                height={1080}
+                className="max-h-[95vh] max-w-[95vw] object-contain"
+                sizes="95vw"
+              />
             </div>
           </div>
         </div>

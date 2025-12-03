@@ -135,6 +135,7 @@ const collections: Collection[] = [
 
 export default function VolunteeringPage() {
   const [selectedCollection, setSelectedCollection] = useState<Collection | null>(null);
+  const [selectedImage, setSelectedImage] = useState<MediaItem | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-50 via-white to-zinc-100 dark:from-black dark:via-zinc-950 dark:to-zinc-900">
@@ -560,16 +561,21 @@ export default function VolunteeringPage() {
                 {selectedCollection.media.map((item, index) => (
                   <div
                     key={index}
-                    className="group relative aspect-video overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 shadow-sm transition-all hover:border-zinc-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-800 dark:hover:border-zinc-700"
+                    className={`group relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 shadow-sm transition-all hover:border-zinc-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-800 dark:hover:border-zinc-700 ${
+                      item.type === "image" ? "cursor-pointer" : "aspect-video"
+                    }`}
+                    onClick={() => item.type === "image" && setSelectedImage(item)}
                   >
                     {item.type === "image" ? (
-                      <Image
-                        src={item.src}
-                        alt={item.alt || `${selectedCollection.location} - Photo ${index + 1}`}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
+                      <div className="relative aspect-[4/3] w-full">
+                        <Image
+                          src={item.src}
+                          alt={item.alt || `${selectedCollection.location} - Photo ${index + 1}`}
+                          fill
+                          className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
                     ) : (
                       <video
                         className="h-full w-full object-cover"
@@ -598,6 +604,49 @@ export default function VolunteeringPage() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full Image Modal */}
+      {selectedImage && selectedImage.type === "image" && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative max-h-[95vh] max-w-[95vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -right-12 top-0 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+              aria-label="Close"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="relative h-full w-full">
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt || "Full size image"}
+                width={1920}
+                height={1080}
+                className="max-h-[95vh] max-w-[95vw] object-contain"
+                sizes="95vw"
+              />
             </div>
           </div>
         </div>
